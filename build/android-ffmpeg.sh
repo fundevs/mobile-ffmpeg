@@ -394,6 +394,23 @@ cp ${BASEDIR}/tools/make/ffmpeg/libswscale/aarch64/hscale.S ${BASEDIR}/src/${LIB
     --disable-nvenc \
     --disable-vaapi \
     --disable-vdpau \
+--disable-ffplay \
+--disable-ffprobe \
+--disable-hwaccels \
+--disable-stripping \
+--disable-postproc \
+--disable-w32threads \
+    --disable-symver \
+    --disable-network \
+    --disable-devices \
+    --disable-protocols \
+    --enable-protocol=file \
+    --disable-encoders \
+    --disable-decoders \
+    --disable-parsers \
+    --enable-encoder=mpeg4,libx264,aac,ac3,libshine,libmp3lame,vorbis,png,mjpeg \
+    --enable-decoder=mpeg4,h264,aac,ac3,mp3,vorbis,vp8,vp9,flv,vp6f,png,mjpeg,wmv1,wmv2,wmv3,wmv3image,wmav1,wmav2,wmavoice,wmapro,wmalossless,opus,amrnb,flac,pcm_alaw,pcm_bluray,pcm_dvd,pcm_f32be,pcm_f32le,pcm_f64be,pcm_f64le,pcm_lxf,pcm_mulaw,pcm_s16be,pcm_s16be_planar,pcm_s16le,pcm_s16le_planar,pcm_s24be,pcm_s24le,pcm_s32be,pcm_s32le,pcm_s8,pcm_u16be,pcm_u16le,pcm_u24be,pcm_u24le,pcm_u32be,pcm_u32le,pcm_u8 \
+    --enable-parser=mpeg4video,h264,aac,ac3,vorbis,vp8,vp9,opus \
     ${CONFIGURE_POSTFIX} 1>>${BASEDIR}/build.log 2>&1
 
 if [ $? -ne 0 ]; then

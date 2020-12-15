@@ -37,7 +37,11 @@ public class AbiDetect {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             System.loadLibrary("cpufeatures");
         }
-        System.loadLibrary("mobileffmpeg_abidetect");
+        try {
+           System.loadLibrary("mobileffmpeg_abidetect");
+           libLoaded = true;
+        } catch (Throwable e) {
+        }
 
         /* ALL LIBRARIES LOADED AT STARTUP */
         Config.class.getName();
@@ -49,6 +53,8 @@ public class AbiDetect {
     static final String ARM_V7A_NEON = "arm-v7a-neon";
 
     private static boolean armV7aNeonLoaded;
+
+    private static boolean libLoaded;
 
     /**
      * Default constructor hidden.
@@ -69,7 +75,7 @@ public class AbiDetect {
         if (armV7aNeonLoaded) {
             return ARM_V7A_NEON;
         } else {
-            return getNativeAbi();
+            return libLoaded ? getNativeAbi() : Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP ? Build.SUPPORTED_ABIS[0]:Build.CPU_ABI;
         }
     }
 
